@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa"
-import defaultImage from "../images/2.jpg"
-import { RoomContext } from "../context";
+import defaultImage from "../images/baby12.jpg"
+import { ClothesContext } from "../context";
 import { Modal, Button } from 'react-bootstrap'
 import Flip from 'react-reveal'
-const Room = (room) => {
-  const context = React.useContext(RoomContext);
-  room = room.room;
-  const { name, price, images, id, slug, description } = room;
+const Room = (clothes) => {
+  const context = React.useContext(ClothesContext);
+  clothes = clothes.clothes;
+  const { name, price, images, id, slug, description } = clothes;
   const { addToCart } = context;
   const [product, setProduct] = useState(null);
   const openModal = (room) => {
@@ -19,25 +19,25 @@ const Room = (room) => {
   }
   return (
     <div>
-      <section className="room-section">
+      <section className="clothes-section">
         <div className="img-container">
-          <a href={"#" + room.id} onClick={() => openModal(room)}>
-            <img src={images[0] || defaultImage} alt="room-image" />
+          <a href={"#" + clothes.id} onClick={() => openModal(clothes)}>
+            <img src={images[0] || defaultImage} alt="clothes-image" />
           </a>
           <div className="price-top">
             <h4>{price}</h4>
-            <p>per day</p>
+            <p>dollar</p>
 
           </div>
-          <Link to={`/rooms/${slug}`} className="btn-general room-link">featured</Link>
-          <button className="btn-general cart-btn" ><FaShoppingCart onClick={() => addToCart(room)} /></button>
+          <Link to={`/shop/${slug}`} className="btn-general clothes-link">featured</Link>
+          <button className="btn-general cart-btn" ><FaShoppingCart onClick={() => addToCart(clothes)} /></button>
         </div>
-        <div className="room-name">{name}</div>
+        <div className="clothes-name">{name}</div>
       </section>
       {product && (
         <Modal size="lg" show={true} onHide={closeModal} dialogClassName="modal-container">
           <Modal.Header closeButton>
-            <Modal.Title>Room Detail</Modal.Title>
+            <Modal.Title>Clothes Detail</Modal.Title>
           </Modal.Header>
           <Modal.Body><div className="modal-detail">
 
@@ -51,7 +51,7 @@ const Room = (room) => {
 
                 <button className="btn-general"
                   onClick={() => {
-                    addToCart(room);
+                    addToCart(clothes);
                     closeModal();
                   }}>Add to cart</button>
 

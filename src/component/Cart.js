@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { RoomContext } from "../context";
+import { ClothesContext } from "../context";
 import { FaThumbsDown } from 'react-icons/fa';
 import Bounce from 'react-reveal/Bounce'
 const Cart = () => {
-    const context = React.useContext(RoomContext);
+    const context = React.useContext(ClothesContext);
     const { cartItems, removeFromCart, createOrder } = context;
     const [state, setState] = useState({
         name: "",

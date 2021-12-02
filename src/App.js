@@ -3,114 +3,72 @@ import "./App.css";
 import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 import Error from "./pages/Error";
 import Home from "./pages/Home";
-import Rooms from "./pages/Rooms";
-import SingleRoom from "./pages/SingleRoom";
+import Shop from "./pages/Shop";
+import SingleClothes from "./pages/SingleClothes";
 import NavbarHotel from "./component/NavBarHotel";
 import data from "./data";
-import { RoomContext } from "./context"
+import { ClothesContext } from "./context"
 function App() {
   let history = useHistory()
   const [state, setState] = useState({
-    rooms: [],
-    sortedRooms: [],
-    featuredRooms: [],
+    allClothes: [],
+    featuredClothes: [],
     loading: true,
-    type: 'all',
-    capacity: 1,
-    minPrice: 0,
-    maxPrice: 0,
-    minSize: 0,
-    maxSize: 0,
-    breakfast: false,
-    pets: false,
+    gender: null,
+    origin: '',
+    material: '',
     cartItems: [],
   });
   useEffect(() => {
 
-    const rooms = formatData(data);
-    const featuredRooms = rooms.filter(room => room.featured === true);
-    let maxPrice = Math.max(...rooms.map(room => room.price));
-    let maxSize = Math.max(...rooms.map(room => room.size));
+    const allClothes = formatData(data);
+    const featuredClothes = allClothes.filter(clothes => clothes.featured === true);
+
 
     setState({
-      rooms,
-      featuredRooms,
-      sortedRooms: rooms,
+      allClothes,
+      featuredClothes,
       loading: false,
-      type: 'all',
-      capacity: 1,
-      minPrice: 0,
-      maxPrice: maxPrice,
-      minSize: 0,
-      maxSize: maxSize,
-      breakfast: false,
-      pets: false,
+      gender: null,
+      origin: '',
+      material: '',
       cartItems: localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : [],
     });
 
   }, []);
-  const getRoom = (slug) => {
-    const rooms = state.rooms;
-    let room = rooms.find(room => room.slug === slug);
-    return room;
+  const getClothes = (slug) => {
+    const allClothes = state.allClothes;
+    let clothes = allClothes.find(clothes => clothes.slug === slug);
+    return clothes;
   }
   const formatData = (data) => {
-    let rooms = data.map(item => {
+    let allClothes = data.map(item => {
       let id = item.sys.id;
       let images = item.fields.images.map(image => image.fields.file.url);
-      let room = { ...item.fields, id, images };
-      return room;
+      let clothes = { ...item.fields, id, images };
+      return clothes;
 
     });
-    return rooms;
+    return allClothes;
   };
-  const handleChange = event => {
 
-    console.log(event.target.name);
-    console.log(event.target.value);
-    setState(
-      {
-        ...state,
-        [event.target.name]: event.target.value,
-
-      },
-    )
-
-  }
-  const filterRooms = () => {
-    let {
-      type,
-      rooms,
-      sortedRooms,
-    } = state
-    let tempRooms = [...rooms]
-    if (type !== 'all') {
-      tempRooms = rooms.filter(room => room.type === type)
-    }
-    console.log('temp ne:', tempRooms);
-    setState({
-      ...state,
-      sortedRooms: tempRooms
-    })
-  }
-
-  const addToCart = (room) => {
+  const addToCart = (clothes) => {
 
     const cartItems = state.cartItems.slice();
 
     let alreadyInCart = false;
     cartItems.forEach(item => {
-      if (item.id === room.id) {
+      if (item.id === clothes.id) {
         item.count++;
         alreadyInCart = true;
       }
     });
     if (!alreadyInCart) {
-      cartItems.push({ ...room, count: 1 });
+      cartItems.push({ ...clothes, count: 1 });
     }
     setState({ ...state, cartItems });
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    history.push('/rooms')
+    history.push('/shop')
   }
   const removeFromCart = (item) => {
     let cartItems = state.cartItems;
@@ -126,10 +84,9 @@ function App() {
   }
   return (
     <>
-      <RoomContext.Provider value={{
+      <ClothesContext.Provider value={{
         ...state,
-        getRoom,
-        handleChange,
+        getClothes,
         addToCart,
         removeFromCart,
         createOrder,
@@ -138,11 +95,11 @@ function App() {
         <Switch>
 
           <Route exact path="/" component={Home}></Route>
-          <Route exact path="/rooms/" component={Rooms}></Route>
-          <Route exact path="/rooms/:slug" component={SingleRoom}></Route>
+          <Route exact path="/shop/" component={Shop}></Route>
+          <Route exact path="/shop/:slug" component={SingleClothes}></Route>
           <Route component={Error}></Route>
         </Switch>
-      </RoomContext.Provider>
+      </ClothesContext.Provider>
     </>
   );
 }

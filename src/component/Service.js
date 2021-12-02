@@ -1,33 +1,34 @@
 import React, { useState } from "react";
-import { FaBeer, FaBath, FaGuitar, FaHeart } from "react-icons/fa";
+import { IoFlowerOutline, IoLeafOutline, IoSnowOutline } from "react-icons/io5";
+import { IoIosPartlySunny } from "react-icons/io";
 import { Tittle } from "./Tittle";
 const Service = () => {
   const [services, setServices] = useState([
     {
       id: 1,
-      tittle: "Beer",
-      icon: <FaBeer />,
+      tittle: "Spring",
+      icon: <IoFlowerOutline />,
       content:
         "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..",
     },
     {
       id: 2,
-      tittle: "Luxury Bath",
-      icon: <FaBath />,
+      tittle: "Summer",
+      icon: <IoIosPartlySunny />,
       content:
         "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..",
     },
     {
       id: 3,
-      tittle: "Romance",
-      icon: <FaHeart />,
+      tittle: "Autumn",
+      icon: <IoLeafOutline />,
       content:
         "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..",
     },
     {
       id: 4,
-      tittle: "Acoustic",
-      icon: <FaGuitar />,
+      tittle: "Winter",
+      icon: <IoSnowOutline />,
       content:
         "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..",
     },
@@ -35,7 +36,7 @@ const Service = () => {
   return (
     <div>
       <section className="services">
-        <Tittle tittle="service" />
+        <Tittle tittle="four seasons" />
         <div className="services-center">
           {services.map(item => {
             return (

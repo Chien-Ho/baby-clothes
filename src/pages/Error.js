@@ -10,7 +10,7 @@ const Error = (props) => {
     <div>
       <Hero hero="errorHero">
         <Banner tittle="Error">
-          <Link className="btn-general">Return</Link>
+          <Link to="/" className="btn-general">Return</Link>
         </Banner>
       </Hero>
     </div>

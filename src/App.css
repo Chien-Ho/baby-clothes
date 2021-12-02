@@ -105,7 +105,7 @@ body {
 }
 /* end navbar */
 .defaultHero {
-    background-image: url(./images/homelogo.jpg);
+    background-image: url(./images/banner.jpg);
     min-height: calc(100vh - 200px);
     background-repeat: no-repeat;
     background-position: center;
@@ -114,8 +114,8 @@ body {
     justify-content: center;
     align-items: center;
 }
-.roomsHero {
-    background-image: url(./images/roomlogo.jpg);
+.shopHero {
+    background-image: url(./images/banner.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -183,13 +183,13 @@ body {
   margin: 0 auto;
 }
 /*end service*/
-.rooms-cart-container {
+.shop-cart-container {
   display: flex;
 }
-.featured-rooms {
+.featured-shop {
   padding: 2rem 0;
 }
-.featured-rooms-center {
+.featured-shop-center {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(255,1fr));
   min-width: 80vw;
@@ -198,7 +198,7 @@ body {
   margin: 0 auto;
 }
 @media screen and (min-width: 768px) {  
-  .featured-rooms-center {
+  .featured-shop-center {
     width: 60vw;
     grid-template-columns: repeat(auto-fit,minmax(334px,1fr));
   }
@@ -235,7 +235,7 @@ body {
   font-size: 0.7rem;
   
 }
-.room-link {
+.clothes-link {
   position: absolute;
   top: 42%;
   left: 38%;
@@ -260,13 +260,13 @@ body {
 .img-container:hover .price-top {
   opacity: 0;
 }
-.img-container:hover .room-link {
+.img-container:hover .clothes-link {
   transform: scale(1);
 }
 .img-container:hover .cart-btn {
   transform: scale(1);
 }
-.room-name {
+.clothes-name {
   background: var(--offWhite);
   text-align: center;
   text-transform: capitalize;
@@ -275,10 +275,10 @@ body {
   padding: 10px ;
 
 }
-.single-room {
+.single-clothes {
   padding-top: 5rem;
 }
-.single-room-images {
+.single-clothes-images {
   background: no-repeat center/cover;
   width: 80vw;
   display: grid;
@@ -287,13 +287,13 @@ body {
   grid-column-gap: 1rem;
   margin: 0 auto;
 }
-.single-room-images img {
+.single-clothes-images img {
   width: 100%;
   display: block;
 }
-.single-room-info {
-  display: grid;
-  grid-template-columns: 1fr;
+.single-clothes-info {
+  display: flex;
+  
   margin: 2rem auto;
   width: 80vw;
 }
@@ -312,29 +312,16 @@ body {
   letter-spacing: var(--mainSpacing);
 }
 .info h4 {
+  width: 20vw;
   font-weight: 300;
 }
-.room-extras {
-  width: 80vw;
-  margin: 1rem auto;
-}
-.room-extras h2 {
-  text-transform: capitalize;
-  letter-spacing: var(--mainSpacing);
-}
-.extras {
-  list-style-type: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(255px,1fr));
-  grid-row-gap: 2rem;
-  grid-column-gap: 1rem;
-}
+
 @media screen and (min-width: 786px) {
-  .single-room-images,.single-room-info,.room-extras {
+  .single-clothes-images,.single-clothes-info,.clothes-extras {
     width: 80vw;
     min-width: 1100px;
   }
-  .single-room-info {
+  .single-clothes-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 7rem;
@@ -344,52 +331,9 @@ body {
   }
 
 }
-/* end of single room */
-/* filter */
-.filter-container {
-  padding: 5rem 0;
-}
-.filter-form {
-  width: 60vw;
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(255px,1fr));
-  margin: 0 auto;
-  grid-row-gap: 2rem;
-  grid-column-gap: 50px;
-}
-.form-group {
-  text-transform: capitalize;
-}
-.form-group label {
-  display: block;
-  letter-spacing: var(--mainSpacing);
-  margin-bottom: 0.5rem;
-}
-.form-control {
-  background: transparent;
-  width: 100%;
-  font-size: 1rem;
-}
-.size-inputs {
-  display: flex;
-}
-.size-input {
-  width:40%;
-  padding: 0.2rem;
-  border: 1px solid var(--mainBlack);
-  border-radius: 0.2rem;
-  margin-right: 0.2rem;
-}
-.single-extra label{
-  display: inline-block;
-  font-size: 0.8rem;
-  margin-right: 0.5rem;
-}
-@media screen and (min-width:786px){
-  .filter-form {
-    width: 95vw;
-  }
-}
+/* end of clothes */
+
+
 .cart-header {
   font-size: 1.5rem;
   margin-left: 2.5rem;
